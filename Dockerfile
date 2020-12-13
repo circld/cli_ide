@@ -55,7 +55,7 @@ RUN nvim -V0 +'PlugInstall' +'qa' \
 # LanguageClient-neovim needs its own step
 WORKDIR $HOME/.vim/plugged/LanguageClient-neovim
 RUN sh ./install.sh
-WORKDIR $HOME
+WORKDIR $HOME/src
 
 # cleanup
 # RUN apk del gcc musl-dev
