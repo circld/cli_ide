@@ -5,8 +5,7 @@
         *   https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
         *   https://linoxide.com/linux-how-to/create-home-directory-existing-user-linux/
         *   https://medium.com/better-programming/docker-best-practices-and-anti-patterns-e7cbccba4f19
-*   move python reqs into requirements file?
-*   create repo and push existing work up
+*   move python reqs into requirements file
 *   decide whether to include all linters/fixers or have separate images
     *   pros: better modularity, size advantages (TODO how big is the all-in-one vs python vs rust images?)
     *   cons: need to retain some build dependencies for downstream installs (e.g., `pyls` needs C build tools)
@@ -18,17 +17,17 @@
 *   optimize image size
     *   build dependency identification and cleanup
     *   python/intermediate artifact cleanup
-*   add specific versions to installs (e.g., base image)
+*   add specific versions to installs (e.g., base image) for a more deterministic build
 
 # Installation
 
-`$ git clone <TODO> && cd <TODO>`
+`$ git clone https://github.com/circld/cli_ide && cd cli_ide`
 
 `$ docker build . -t cli_dev:latest`
 
 # Usage
 
-`$ docker run --name ide --rm -it --mount type=bind,src=(pwd),dst=/src cli_dev:latest`
+`$ docker run --name cli_ide --rm -it --mount type=bind,src=(pwd),dst=/src cli_dev:latest`
 
 or with `fish` utility function:
 
