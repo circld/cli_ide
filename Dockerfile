@@ -52,6 +52,11 @@ RUN nvim -V0 +'PlugInstall' +'qa' \
     || nvim --headless -V0 +'UpdateRemotePlugins' +'PlugInstall! --sync' +'qa' \
     || true
 
+# LanguageClient-neovim needs its own step
+WORKDIR $HOME/.vim/plugged/LanguageClient-neovim
+RUN sh ./install.sh
+WORKDIR $HOME
+
 # cleanup
 # RUN apk del gcc musl-dev
 

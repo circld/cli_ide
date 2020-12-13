@@ -1,9 +1,10 @@
 # TODO
 
-*   `.tmux.conf` points to `/usr/local/bin/fish`, whereas `fish` is installed to `/usr/bin/fish`... how to best retain consistency across environments?
+*   `tmux` broken: `.tmux.conf` points to `/usr/local/bin/fish`, whereas `fish` is installed to `/usr/bin/fish`... how to best retain consistency across environments?
     *   should the default user *really* be `root`?
-*   add extra `LanguageClient-neovim` install step (`$ sh install.sh`)
-    *   see [this link](https://github.com/autozimu/LanguageClient-neovim/blob/next/INSTALL.md) for more info
+        *   https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
+        *   https://linoxide.com/linux-how-to/create-home-directory-existing-user-linux/
+        *   https://medium.com/better-programming/docker-best-practices-and-anti-patterns-e7cbccba4f19
 *   move python reqs into requirements file?
 *   create repo and push existing work up
 *   decide whether to include all linters/fixers or have separate images
@@ -17,6 +18,7 @@
 *   optimize image size
     *   build dependency identification and cleanup
     *   python/intermediate artifact cleanup
+*   add specific versions to installs (e.g., base image)
 
 # Installation
 
