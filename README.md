@@ -1,23 +1,33 @@
 # TODO
 
-*   `tmux` broken: `.tmux.conf` points to `/usr/local/bin/fish`, whereas `fish` is installed to `/usr/bin/fish`... how to best retain consistency across environments?
-    *   should the default user *really* be `root`?
-        *   https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
-        *   https://linoxide.com/linux-how-to/create-home-directory-existing-user-linux/
-        *   https://medium.com/better-programming/docker-best-practices-and-anti-patterns-e7cbccba4f19
-*   move python reqs into requirements file
-*   decide whether to include all linters/fixers or have separate images
-    *   pros: better modularity, size advantages (TODO how big is the all-in-one vs python vs rust images?)
-    *   cons: need to retain some build dependencies for downstream installs (e.g., `pyls` needs C build tools)
-    *   separate: create language-specific images using cli_dev as a base (update `Installation` section below)
-        *   install language-specific linters and fixers
+## Near-term
+
+*   `tmux` broken: `.tmux.conf` points to `/usr/local/bin/fish`, whereas `fish` is installed to `/usr/bin/fish`; symlink to `/usr/local/bin/fish`
+*   update fish function
+    *   to append (sanitized) path to container name
+    *   take port mappings as an optional argument
+*   add `neovim-doc` (`neovim` doesn't include help docs)
+*   set `/home` as homedir
+*   expose a range of ports
+*   move python reqs into requirements file?
+*   add specific versions to installs for a more deterministic build
+    *   specific alpine version
+*   expose range of ports
+
+## Longer-term
+
+*   should the default user *really* be `root`?
+    *   https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
+    *   https://linoxide.com/linux-how-to/create-home-directory-existing-user-linux/
+    *   https://medium.com/better-programming/docker-best-practices-and-anti-patterns-e7cbccba4f19
+*   install linters and fixers
+    *   longer-term: consider creating language-specific images using cli_dev as a base (update `Installation` section below)
 *   how to handle `pyenv`?
     *   if installing, check `https://github.com/jfloff/alpine-python` for ideas
     *   otherwise, address `.spacevim` and `config.fish` references to `pyenv`
 *   optimize image size
     *   build dependency identification and cleanup
     *   python/intermediate artifact cleanup
-*   add specific versions to installs (e.g., base image) for a more deterministic build
 
 # Installation
 
