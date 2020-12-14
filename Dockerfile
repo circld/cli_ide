@@ -2,7 +2,7 @@ FROM alpine:latest as base
 
 MAINTAINER Paul Garaud (https://github.com/circld)
 
-ENV HOME /
+ENV HOME /root
 WORKDIR $HOME
 
 RUN mkdir -p .config/nvim;                                       \
@@ -22,6 +22,7 @@ RUN mkdir -p .config/nvim;                                       \
     mandoc                                                       \
     ncurses                                                      \
     neovim                                                       \
+    neovim-doc                                                   \
     openssh-client                                               \
     # https://stackoverflow.com/questions/30624829 #             \
     musl-dev                                                     \
@@ -30,10 +31,15 @@ RUN mkdir -p .config/nvim;                                       \
     python3-dev                                                  \
     py-pip                                                       \
     ripgrep                                                      \
-    tmux                                                         \
-    ;                                                            \
-    # personal dotfiles/configurations                           \
-    git clone https://github.com/circld/Prefs                    \
+    tmux
+
+# symlinks
+RUN ln -s /usr/bin/fish /usr/local/bin/fish
+
+RUN pip install -U msgpack pynvim
+
+# personal dotfiles/configurations
+RUN git clone https://github.com/circld/Prefs                    \
     && ln -fs $HOME/Prefs/.config/fish .config/fish              \
     && ln -s $HOME/Prefs/.gitconfig .gitconfig                   \
     && ln -s $HOME/Prefs/git-personal.conf git-personal.conf     \
@@ -41,9 +47,7 @@ RUN mkdir -p .config/nvim;                                       \
     && ln -s $HOME/Prefs/.tmux.conf .tmux.conf
 
 # space-vim
-RUN pip install msgpack pynvim;                                            \
-    git clone https://github.com/liuchengxu/space-vim.git $HOME/.space-vim \
-    # && ln -s $HOME/.space-vim/init.vim $HOME/.config/nvim/init.vim;      \
+RUN git clone https://github.com/liuchengxu/space-vim.git $HOME/.space-vim \
     && cd $HOME/.space-vim && make neovim && cd $HOME                      \
     && ln -fs $HOME/Prefs/.spacevim .spacevim
 

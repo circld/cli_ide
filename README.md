@@ -2,12 +2,9 @@
 
 ## Near-term
 
-*   `tmux` broken: `.tmux.conf` points to `/usr/local/bin/fish`, whereas `fish` is installed to `/usr/bin/fish`; symlink to `/usr/local/bin/fish`
 *   update fish function
     *   to append (sanitized) path to container name
     *   take port mappings as an optional argument
-*   add `neovim-doc` (`neovim` doesn't include help docs)
-*   set `/home` as homedir
 *   expose a range of ports
 *   move python reqs into requirements file?
 *   add specific versions to installs for a more deterministic build
