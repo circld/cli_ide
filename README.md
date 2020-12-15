@@ -2,17 +2,14 @@
 
 ## Near-term
 
-*   update fish function
-    *   to append (sanitized) path to container name
-    *   take port mappings as an optional argument
-*   expose a range of ports
 *   move python reqs into requirements file?
 *   add specific versions to installs for a more deterministic build
     *   specific alpine version
-*   expose range of ports
 
 ## Longer-term
 
+*   expose a range of ports (but then... cannot be interactive? think this through)
+    *   take port mappings as an optional argument
 *   should the default user *really* be `root`?
     *   https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
     *   https://linoxide.com/linux-how-to/create-home-directory-existing-user-linux/
