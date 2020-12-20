@@ -1,4 +1,4 @@
-FROM alpine:latest as base
+FROM alpine:3.12 as base
 
 MAINTAINER Paul Garaud (https://github.com/circld)
 
@@ -14,22 +14,21 @@ RUN mkdir -p .config/nvim;                                       \
     entr                                                         \
     fish                                                         \
     fzf                                                          \
+    g++                                                          \
+    gcc                                                          \
     git                                                          \
     git-perl                                                     \
     less                                                         \
     make                                                         \
     man-pages                                                    \
     mandoc                                                       \
+    musl-dev                                                     \
     ncurses                                                      \
     neovim                                                       \
     neovim-doc                                                   \
     openssh-client                                               \
-    # https://stackoverflow.com/questions/30624829 #             \
-    musl-dev                                                     \
-    gcc                                                          \
-    ################################################             \
-    python3-dev                                                  \
     py-pip                                                       \
+    python3-dev                                                  \
     ripgrep                                                      \
     tmux
 
@@ -42,9 +41,10 @@ RUN pip install -U msgpack pynvim
 RUN git clone https://github.com/circld/Prefs                    \
     && ln -fs $HOME/Prefs/.config/fish .config/fish              \
     && ln -s $HOME/Prefs/.gitconfig .gitconfig                   \
+    && ln -s $HOME/Prefs/.ripgreprc .ripgreprc                   \
+    && ln -s $HOME/Prefs/.tmux.conf .tmux.conf                   \
     && ln -s $HOME/Prefs/git-personal.conf git-personal.conf     \
-    && ln -s $HOME/Prefs/pycodestyle pycodestyle                 \
-    && ln -s $HOME/Prefs/.tmux.conf .tmux.conf
+    && ln -s $HOME/Prefs/pycodestyle pycodestyle
 
 # space-vim
 RUN git clone https://github.com/liuchengxu/space-vim.git $HOME/.space-vim \

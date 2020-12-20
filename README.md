@@ -2,6 +2,11 @@
 
 ## Near-term
 
+*   add `g++` for building `python-language-server[all]'` (`ujson`)
+*   add rust: `$ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
+*   troubleshooting LanguageClient-neovim: is it possible to have a language server running *within* a container in addition to shell entry point?
+    *   FIXME managed to get it to work w/the languageserver-neovim minimal vimrc, but even after removing almost everything from `.spacevim`, still wasn't working (language server wouldn't start at all...)
+    *   work through space-vim bootstrap to identify where things go awry
 *   move python reqs into requirements file?
 *   add specific versions to installs for a more deterministic build
     *   specific alpine version
