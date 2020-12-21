@@ -2,9 +2,6 @@
 
 ## Near-term
 
-*   LanguageServer-client must be fixed upstream (or each time manually)
-    *   created [PR](https://github.com/liuchengxu/space-vim/pull/468)
-*   move python reqs into requirements file?
 *   add specific versions to installs for a more deterministic build
     *   specific alpine version
 

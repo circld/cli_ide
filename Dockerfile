@@ -39,7 +39,8 @@ RUN ln -s /usr/bin/fish /usr/local/bin/fish
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \
     | sh -s -- -y -c rls
 
-RUN pip install -U msgpack pynvim python-language-server[all]
+# python dependencies
+RUN pip install -U wheel && pip install msgpack pynvim
 
 # personal dotfiles/configurations
 RUN git clone https://github.com/circld/Prefs                    \
@@ -57,17 +58,28 @@ RUN git clone https://github.com/liuchengxu/space-vim.git $HOME/.space-vim \
 
 # install neovim plugins
 RUN mkdir -p $HOME/.vim/plugged \
-    || nvim -V0 +'PlugInstall' +'qa' \
+    && nvim -V0 +'PlugInstall' +'qa' \
     || nvim --headless -V0 +'UpdateRemotePlugins' +'PlugInstall! --sync' +'qa' \
     || true
 
 # LanguageClient-neovim needs its own step
 WORKDIR $HOME/.vim/plugged/LanguageClient-neovim
-RUN sh ./install.sh
+RUN sh install.sh
 WORKDIR $HOME/src
 
-# cleanup
-# RUN apk del gcc musl-dev
+# LSP, linters, & formatters
+
+# bash
+RUN apk add shellcheck shfmt
+
+# python
+RUN pip install black   \
+                isort   \
+                mypy    \
+                python-language-server[all]
+
+# vim
+apk add vint
 
 ENV EDITOR nvim
 ENV SHELL /usr/bin/fish
