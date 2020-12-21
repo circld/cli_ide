@@ -35,7 +35,11 @@ RUN mkdir -p .config/nvim;                                       \
 # symlinks
 RUN ln -s /usr/bin/fish /usr/local/bin/fish
 
-RUN pip install -U msgpack pynvim
+# install rustup + components
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \
+    | sh -s -- -y -c rls
+
+RUN pip install -U msgpack pynvim python-language-server[all]
 
 # personal dotfiles/configurations
 RUN git clone https://github.com/circld/Prefs                    \
@@ -52,7 +56,8 @@ RUN git clone https://github.com/liuchengxu/space-vim.git $HOME/.space-vim \
     && ln -fs $HOME/Prefs/.spacevim .spacevim
 
 # install neovim plugins
-RUN nvim -V0 +'PlugInstall' +'qa' \
+RUN mkdir -p $HOME/.vim/plugged \
+    || nvim -V0 +'PlugInstall' +'qa' \
     || nvim --headless -V0 +'UpdateRemotePlugins' +'PlugInstall! --sync' +'qa' \
     || true
 
