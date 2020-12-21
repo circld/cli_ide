@@ -79,7 +79,7 @@ RUN pip install black   \
                 python-language-server[all]
 
 # vim
-apk add vint
+RUN apk add vint
 
 ENV EDITOR nvim
 ENV SHELL /usr/bin/fish
