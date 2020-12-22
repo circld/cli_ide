@@ -1,3 +1,5 @@
+![Example](example.png)
+
 # Why
 
 *   Portability: move seamlessly across operating systems and be productive immediately with minimal time wasted on setup and configuration
