@@ -1,7 +1,31 @@
+# Why
+
+*   Portability: move seamlessly across operating systems and be productive immediately with minimal time wasted on setup and configuration
+*   Dependency management: avoid breaking changes in the complex interdependencies across CLI tools by applying updates in a sandbox
+*   Experimentation: be as destructive or radical as you like as you try out different tools or ways of working without the risk of breaking your existing setup
+*   Isolation: achieve greater isolation-- in theory you could be working on the same codebase in two different IDE containers with different sets of project dependencies installed
+
+***
+
+# Installation
+
+`$ git clone https://github.com/circld/cli_ide && cd cli_ide`
+
+`$ docker build . -t cli_dev:latest`
+
+# Usage
+
+`$ docker run --name cli_ide --rm -it --mount type=bind,src=(pwd),dst=/src cli_dev:latest`
+
+or with `fish` utility function:
+
+`$ dev`
+
 # TODO
 
 ## Near-term
 
+*   do i want `node`/`npm` as dependencies (used for a variety of language servers)
 *   add specific versions to installs for a more deterministic build
     *   specific alpine version
 
@@ -21,17 +45,3 @@
 *   optimize image size
     *   build dependency identification and cleanup
     *   python/intermediate artifact cleanup
-
-# Installation
-
-`$ git clone https://github.com/circld/cli_ide && cd cli_ide`
-
-`$ docker build . -t cli_dev:latest`
-
-# Usage
-
-`$ docker run --name cli_ide --rm -it --mount type=bind,src=(pwd),dst=/src cli_dev:latest`
-
-or with `fish` utility function:
-
-`$ dev`
