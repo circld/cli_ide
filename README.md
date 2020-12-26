@@ -17,9 +17,11 @@
 
 # Usage
 
+For an ephemeral development environment:
+
 `$ docker run --name cli_ide --rm -it --mount type=bind,src=(pwd),dst=/src cli_dev:latest`
 
-or with `fish` utility function:
+Or with this `fish` [utility function](https://github.com/circld/Prefs/blob/master/.config/fish/functions/utilities.fish):
 
 `$ dev`
 
