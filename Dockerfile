@@ -73,9 +73,10 @@ WORKDIR $HOME/src
 RUN apk add shellcheck shfmt
 
 # python
-RUN pip install black   \
-                isort   \
-                mypy    \
+RUN pip install --ignore-installed distlib black \
+                isort                            \
+                mypy                             \
+                pre-commit                       \
                 python-language-server[all]
 
 # vim
