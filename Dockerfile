@@ -49,7 +49,7 @@ RUN git clone https://github.com/circld/Prefs                    \
     && ln -s $HOME/Prefs/.ripgreprc .ripgreprc                   \
     && ln -s $HOME/Prefs/.tmux.conf .tmux.conf                   \
     && ln -s $HOME/Prefs/git-personal.conf git-personal.conf     \
-    && ln -s $HOME/Prefs/pycodestyle pycodestyle
+    && ln -s $HOME/Prefs/pycodestyle .config/pycodestyle
 
 # space-vim
 RUN git clone https://github.com/liuchengxu/space-vim.git $HOME/.space-vim \
