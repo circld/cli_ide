@@ -2,6 +2,7 @@ FROM centos/python-36-centos7:1
 
 MAINTAINER Paul Garaud (https://github.com/circld)
 
+USER root
 ENV HOME /root
 WORKDIR $HOME
 
