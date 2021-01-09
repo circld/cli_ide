@@ -13,6 +13,7 @@ RUN mkdir -p .config/nvim;                                       \
     curl                                                         \
     entr                                                         \
     fish                                                         \
+    fd                                                           \
     fzf                                                          \
     g++                                                          \
     gcc                                                          \
@@ -27,20 +28,12 @@ RUN mkdir -p .config/nvim;                                       \
     neovim                                                       \
     neovim-doc                                                   \
     openssh-client                                               \
+    openssl                                                      \
+    openssl-dev                                                  \
     py-pip                                                       \
     python3-dev                                                  \
     ripgrep                                                      \
     tmux
-
-# symlinks
-RUN ln -s /usr/bin/fish /usr/local/bin/fish
-
-# install rustup + components
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \
-    | sh -s -- -y -c rls
-
-# python dependencies
-RUN pip install -U wheel && pip install msgpack pynvim
 
 # personal dotfiles/configurations
 RUN git clone https://github.com/circld/Prefs                    \
@@ -50,6 +43,21 @@ RUN git clone https://github.com/circld/Prefs                    \
     && ln -s $HOME/Prefs/.tmux.conf .tmux.conf                   \
     && ln -s $HOME/Prefs/git-personal.conf git-personal.conf     \
     && ln -s $HOME/Prefs/pycodestyle .config/pycodestyle
+
+# symlinks
+RUN ln -s /usr/bin/fish /usr/local/bin/fish
+
+# install rustup + components
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \
+    | sh -s -- -y -c rls
+
+# tealdeer (tldr)
+# see: https://users.rust-lang.org/t/sigsegv-with-program-linked-against-openssl-in-an-alpine-container/52172/4
+RUN RUSTFLAGS='-C target-feature=-crt-static' ~/.cargo/bin/cargo install tealdeer \
+  && ~/.cargo/bin/tldr --update
+
+# python dependencies
+RUN pip install -U wheel && pip install msgpack pynvim
 
 # space-vim
 RUN git clone https://github.com/liuchengxu/space-vim.git $HOME/.space-vim \

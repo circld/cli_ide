@@ -29,9 +29,13 @@ Or with this `fish` [utility function](https://github.com/circld/Prefs/blob/mast
 
 ## Near-term
 
+*   centos7
+    *   confirm that changes to lightline don't break build for Centos7 image
+    *   add tealdeer to centos dockerfile
+    *   add [fd](https://github.com/sharkdp/fd)
+*   experiment with including [fisher](https://github.com/jorgebucaran/fisher) and [fzf.fish](https://github.com/PatrickF1/fzf.fish)
 *   do i want `node`/`npm` as dependencies (used for a variety of language servers)
 *   add specific versions to installs for a more deterministic build
-    *   specific alpine version
 
 ## Longer-term
 
@@ -42,7 +46,7 @@ Or with this `fish` [utility function](https://github.com/circld/Prefs/blob/mast
     *   https://linoxide.com/linux-how-to/create-home-directory-existing-user-linux/
     *   https://medium.com/better-programming/docker-best-practices-and-anti-patterns-e7cbccba4f19
 *   install linters and fixers
-    *   longer-term: consider creating language-specific images using cli_dev as a base (update `Installation` section below)
+    *   longer-term: consider creating language-specific images using cli_dev as a base (update `Installation` section above)
 *   how to handle `pyenv`?
     *   if installing, check `https://github.com/jfloff/alpine-python` for ideas
     *   otherwise, address `.spacevim` and `config.fish` references to `pyenv`
