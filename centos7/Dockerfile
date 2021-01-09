@@ -29,6 +29,10 @@ RUN yum install -y --setopt=tsflags='' \
     ripgrep                            \
     tmux
 
+# install rustup + components
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \
+    | sh -s -- -y -c rls
+
 # bat
 RUN wget https://github.com/sharkdp/bat/releases/download/v0.7.1/bat-v0.7.1-x86_64-unknown-linux-musl.tar.gz -O - \
     | tar -xvzf - -C /usr/local/bin \
@@ -40,6 +44,11 @@ RUN git clone https://github.com/eradman/entr ~/entr \
     && ./configure                                   \
     && make install
 
+# fd
+RUN wget https://github.com/sharkdp/fd/releases/download/v8.2.1/fd-v8.2.1-x86_64-unknown-linux-musl.tar.gz -O - \
+    | tar -xvzf - -C /usr/local/bin \
+    && mv /usr/local/bin/fd-v8.2.1-x86_64-unknown-linux-musl/fd /usr/local/bin/fd
+
 # neovim
 RUN curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage \
     && chmod u+x nvim.appimage                                                       \
@@ -48,12 +57,12 @@ RUN curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appi
     && mv squashfs-root /                                                            \
     && ln -s /squashfs-root/AppRun /usr/bin/nvim
 
+# tealdeer (tldr)
+RUN ~/.cargo/bin/cargo install tealdeer \
+  && ~/.cargo/bin/tldr --update
+
 # symlinks
 RUN ln -s /usr/bin/fish /usr/local/bin/fish
-
-# install rustup + components
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \
-    | sh -s -- -y -c rls
 
 # python dependencies
 RUN pip install -U wheel && pip install msgpack pynvim

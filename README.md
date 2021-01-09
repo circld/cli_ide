@@ -33,6 +33,7 @@ Or with this `fish` [utility function](https://github.com/circld/Prefs/blob/mast
     *   confirm that changes to lightline don't break build for Centos7 image
     *   add tealdeer to centos dockerfile
     *   add [fd](https://github.com/sharkdp/fd)
+*   use [static binaries](https://github.com/dbrgn/tealdeer/releases) for `tealdeer`
 *   experiment with including [fisher](https://github.com/jorgebucaran/fisher) and [fzf.fish](https://github.com/PatrickF1/fzf.fish)
 *   do i want `node`/`npm` as dependencies (used for a variety of language servers)
 *   add specific versions to installs for a more deterministic build
