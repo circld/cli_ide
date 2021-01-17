@@ -73,7 +73,7 @@ RUN mkdir -p $HOME/.vim/plugged \
 # LanguageClient-neovim needs its own step
 WORKDIR $HOME/.vim/plugged/LanguageClient-neovim
 RUN sh install.sh
-WORKDIR $HOME/src
+WORKDIR $HOME
 
 # LSP, linters, & formatters
 
@@ -92,5 +92,12 @@ RUN apk add vint
 
 ENV EDITOR nvim
 ENV SHELL /usr/bin/fish
+
+# get latest from repo w/invalidating all caches
+ARG CACHEBUST=1
+WORKDIR $HOME/Prefs
+RUN git pull origin master
+
+WORKDIR $HOME/src
 
 ENTRYPOINT ["fish"]
