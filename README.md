@@ -21,24 +21,21 @@ For an ephemeral development environment:
 
 `$ docker run --name cli_ide --rm -it --mount type=bind,src=(pwd),dst=/src cli_dev:latest`
 
-Or with this `fish` [utility function](https://github.com/circld/Prefs/blob/master/.config/fish/functions/utilities.fish):
+Or with this `fish` [utility function](https://github.com/circld/Prefs/blob/master/.config/fish/functions/cli_ide.fish):
 
-`$ dev`
+`$ dev --help`
 
 # TODO
 
 ## Near-term
 
-*   centos7
-    *   confirm that changes to lightline don't break build for Centos7 image
-    *   add cache busting step for pulling latest changes down from repo
-*   use [static binaries](https://github.com/dbrgn/tealdeer/releases) for `tealdeer`
-*   experiment with including [fisher](https://github.com/jorgebucaran/fisher) and [fzf.fish](https://github.com/PatrickF1/fzf.fish)
-*   do i want `node`/`npm` as dependencies (used for a variety of language servers)
-*   add specific versions to installs for a more deterministic build
+*   use as daily driver to assess usability/perf/usefulness
 
 ## Longer-term
 
+*   experiment with including [fisher](https://github.com/jorgebucaran/fisher) and [fzf.fish](https://github.com/PatrickF1/fzf.fish)
+*   do i want `node`/`npm` as dependencies (used for a variety of language servers)
+*   add specific versions to installs for a more deterministic build
 *   expose a range of ports (but then... cannot be interactive? think this through)
     *   take port mappings as an optional argument
 *   should the default user *really* be `root`?

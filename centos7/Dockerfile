@@ -34,9 +34,9 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \
     | sh -s -- -y -c rls
 
 # bat
-RUN wget https://github.com/sharkdp/bat/releases/download/v0.7.1/bat-v0.7.1-x86_64-unknown-linux-musl.tar.gz -O - \
+RUN wget https://github.com/sharkdp/bat/releases/download/v0.17.1/bat-v0.17.1-x86_64-unknown-linux-musl.tar.gz -O - \
     | tar -xvzf - -C /usr/local/bin \
-    && mv /usr/local/bin/bat-v0.7.1-x86_64-unknown-linux-musl/bat /usr/local/bin/bat
+    && mv /usr/local/bin/bat-v0.17.1-x86_64-unknown-linux-musl/bat /usr/local/bin/bat
 
 # entr
 RUN git clone https://github.com/eradman/entr ~/entr \
@@ -58,8 +58,7 @@ RUN curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appi
     && ln -s /squashfs-root/AppRun /usr/bin/nvim
 
 # tealdeer (tldr)
-RUN ~/.cargo/bin/cargo install tealdeer \
-  && ~/.cargo/bin/tldr --update
+RUN wget https://github.com/dbrgn/tealdeer/releases/download/v1.4.1/tldr-linux-x86_64-musl -O /usr/local/bin/tldr
 
 # symlinks
 RUN ln -s /usr/bin/fish /usr/local/bin/fish
@@ -94,7 +93,7 @@ RUN mkdir -p $HOME/.vim/plugged \
 # LanguageClient-neovim needs its own step
 WORKDIR $HOME/.vim/plugged/LanguageClient-neovim
 RUN sh install.sh
-WORKDIR $HOME/src
+WORKDIR $HOME
 
 # LSP, linters, & formatters
 
@@ -115,5 +114,12 @@ RUN pip install black                            \
 
 ENV EDITOR nvim
 ENV SHELL /usr/bin/fish
+
+# get latest from repo w/invalidating all caches
+ARG CACHEBUST=1
+WORKDIR $HOME/Prefs
+RUN git pull origin master
+
+WORKDIR $HOME/src
 
 ENTRYPOINT ["fish"]
