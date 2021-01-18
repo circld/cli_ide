@@ -29,6 +29,9 @@ Or with this `fish` [utility function](https://github.com/circld/Prefs/blob/mast
 
 ## Near-term
 
+*   centos7-based images
+    *   set perms for `tldr`
+    *   troubleshoot vim-clap grep2 behavior
 *   does musl `tldr` static binary work for alpine-based container?
 *   use as daily driver to assess usability/perf/usefulness
 
